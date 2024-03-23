@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+		<style>
+			html {
+				height: 100%;
+			}
+
+			body {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100%;
+			}
+
+			.counter_box {
+				display: flex;
+			}
+
+			.counter_box .number {
+				display: block;
+				width: 20px;
+				height: 20px;
+				border: 1px solid #333333;
+				overflow: hidden;
+			}
+
+			.counter_box .number .track {
+				display: flex;
+				flex-direction: column;
+				position: relative;
+				transform: translateY(0px);
+				transition: 0.5s;
+			}
+
+			.counter_box .number span {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 20px;
+				height: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="counter" class="counter_box"></div>
+		<script>
+			const $counterBox = document.getElementById('counter');
+
+			function initCounter (elem, numb, currency) {
+			    let HTML = '';
+
+			    let arrayNum = [...numb.toString()].map(Number);
+
+			    arrayNum.forEach(function (value, idx, arr) {
+			        HTML += '<div class="number">'
+			            HTML += <div class="track" data-value="${value}">
+			                HTML += <span>9</span>;
+
+			                for (let i = 0; i < 10; i++) {
+
+			                    HTML += <span>${i}</span>
+			                }
+
+			            HTML += '</div>'
+			        HTML += '</div>';
+
+			        if (idx % 3 === 1 && idx !== arr.length - 1) {
+			            HTML += '<span>--</span>'
+			        }
+			    })
+
+			    elem.innerHTML = HTML + <div class="currency">${currency}</div>;
+
+			    window.addEventListener('load', function () {
+			        elem.querySelectorAll('.track').forEach(function ($track) {
+			            const dropIdx = parseInt($track.getAttribute('data-value')) + 1;
+
+			            $track.style.transform = translateY(-${dropIdx * 20}px)
+			        })
+			        console.log()
+			    })
+			}
+
+			initCounter($counterBox, 14026530, '$')
+		</script>
+	</body>
+</html>
